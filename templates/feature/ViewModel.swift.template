@@ -1,0 +1,56 @@
+import Foundation
+
+@MainActor
+@Observable
+final class {{FeatureName}}ViewModel {
+
+    // MARK: - State
+
+    enum ViewState {
+        case idle
+        case loading
+        case loaded([/* TODO: YourModel */String])
+        case refreshing([/* TODO: YourModel */String])
+        case error(String)
+    }
+
+    private(set) var state: ViewState = .idle
+
+    // MARK: - Dependencies
+
+    private let useCase: {{FeatureName}}UseCaseProtocol
+
+    // MARK: - Init
+
+    init(useCase: {{FeatureName}}UseCaseProtocol) {
+        self.useCase = useCase
+    }
+
+    // MARK: - Actions
+
+    /// 画面表示時の初回ロード（idleのときだけ実行）
+    func onAppear() async {
+        guard case .idle = state else { return }
+        await load()
+    }
+
+    /// pull-to-refresh など明示的な再取得
+    func refresh() async {
+        if case .loaded(let current) = state {
+            state = .refreshing(current)
+        }
+        await load()
+    }
+
+    // MARK: - Private
+
+    private func load() async {
+        if case .idle = state { state = .loading }
+        do {
+            let items = try await useCase.fetchItems()
+            state = .loaded(items)
+        } catch {
+            state = .error(error.localizedDescription)
+        }
+    }
+}

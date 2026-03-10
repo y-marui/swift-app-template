@@ -1,0 +1,20 @@
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+DerivedData/
+*.hmap
+
+# Swift Package Manager
+.build/
+Packages/Core/.build/
+*.resolved
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Env / secrets
+.env
+*.env.local

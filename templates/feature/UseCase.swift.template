@@ -1,0 +1,26 @@
+import Foundation
+
+// MARK: - Protocol
+
+@MainActor
+protocol {{FeatureName}}UseCaseProtocol {
+    func fetchItems() async throws -> [/* TODO: YourModel */String]
+}
+
+// MARK: - Implementation
+
+@MainActor
+struct {{FeatureName}}UseCase: {{FeatureName}}UseCaseProtocol {
+
+    // TODO: Replace {{FeatureName}}RepositoryProtocol with your actual repository protocol
+    private let repository: {{FeatureName}}RepositoryProtocol
+
+    init(repository: {{FeatureName}}RepositoryProtocol) {
+        self.repository = repository
+    }
+
+    func fetchItems() async throws -> [String] {
+        // TODO: Call repository and apply business logic
+        return []
+    }
+}

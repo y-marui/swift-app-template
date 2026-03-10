@@ -1,0 +1,48 @@
+import SwiftUI
+
+struct {{FeatureName}}View: View {
+
+    @State private var viewModel: {{FeatureName}}ViewModel
+
+    init(viewModel: {{FeatureName}}ViewModel) {
+        _viewModel = State(initialValue: viewModel)
+    }
+
+    var body: some View {
+        Group {
+            switch viewModel.state {
+            case .idle:
+                Color.clear
+
+            case .loading:
+                ProgressView()
+
+            case .loaded(let items), .refreshing(let items):
+                List(items, id: \.self) { item in
+                    Text(item)
+                }
+                .refreshable {
+                    await viewModel.refresh()
+                }
+
+            case .error(let message):
+                ContentUnavailableView(
+                    "Error",
+                    systemImage: "exclamationmark.triangle",
+                    description: Text(message)
+                )
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Retry") {
+                            Task { await viewModel.refresh() }
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("{{FeatureName}}")
+        .task {
+            await viewModel.onAppear()
+        }
+    }
+}

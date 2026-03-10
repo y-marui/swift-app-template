@@ -1,0 +1,10 @@
+# SwiftFormat configuration
+--swiftversion 5.9
+--indent 4
+--trimwhitespace always
+--importgrouping testable-bottom
+--organizetypes actor,class,struct,enum
+--ifdef no-indent
+--commas always
+--semicolons never
+--stripunusedargs closure-only

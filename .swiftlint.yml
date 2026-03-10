@@ -1,0 +1,26 @@
+disabled_rules:
+  - line_length
+
+opt_in_rules:
+  - force_unwrapping
+  - empty_count
+  - closure_spacing
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - nimble_operator
+  - attributes
+
+included:
+  - App
+  - Packages
+
+excluded:
+  - .build
+  - Packages/Core/.build
+
+force_cast: warning
+force_try: warning
+
+identifier_name:
+  min_length: 2
+  max_length: 60
