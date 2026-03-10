@@ -1,8 +1,17 @@
 # Swift AI App Template
 
-![CI](https://github.com/your-org/your-repo/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/y-marui/swift-app-template/actions/workflows/ci.yml/badge.svg)
 
 Template optimized for small teams, AI-assisted development, and long-term maintainability.
+
+## Use this template
+
+1. Click **"Use this template"** → **"Create a new repository"** on GitHub.
+2. Clone your new repository and `cd` into it.
+3. Run `make bootstrap` to install tools and resolve packages.
+4. Open Xcode, create a new iOS App project in the repository root, then add `Packages/Core` as a local package.
+5. Replace all `Example` references with your feature name (see `docs/development.md`).
+6. Update `PROJECT_CONTEXT.md` with your app's details.
 
 ## Features
 
@@ -25,8 +34,8 @@ Template optimized for small teams, AI-assisted development, and long-term maint
 ## Quick Start
 
 ```bash
-git clone <repo>
-cd <repo>
+git clone https://github.com/y-marui/swift-app-template.git
+cd swift-app-template
 make bootstrap
 ```
 
